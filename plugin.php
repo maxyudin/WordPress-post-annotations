@@ -1,46 +1,15 @@
 <?php
 /**
- * Plugin Name: TinyMCE Annotate
- * Description: Create annotations on your posts or pages
- * Text Domain: tinymce-annotate
+ * Plugin Name: TinyMCE Post Annotations
+ * Description: Create annotations on your posts right from TinyMCE
+ * Text Domain: tpa
  * Domain Path: /languages
- * Version:     1.1.2
- * Author:      xyulex
- * Author URI:  https://profiles.wordpress.org/xyulex/
+ * Version:     1.2.0
+ * Author:      Max Yudin
+ * Author URI:  https://maxyudin.com/
  * License:     GPLv2 or later
  * License URI:	http://www.gnu.org/licenses/gpl-2.0.html
  */
-// Create a helper function for easy SDK access.
-
-function ta_fs() {
-    global $ta_fs;
-
-    if ( ! isset( $ta_fs ) ) {
-        // Include Freemius SDK.
-        require_once dirname(__FILE__) . '/freemius/start.php';
-
-        $ta_fs = fs_dynamic_init( array(
-            'id'                => '244',
-            'slug'              => 'tinymce-annotate',
-            'public_key'        => 'pk_967fec31011f34f271d662cb6c939',
-            'is_premium'        => false,
-            'has_addons'        => false,
-            'has_paid_plans'    => false,
-            'menu'              => array(
-                'slug'       => 'tinymce-annotate',
-                'first-path' => 'post-new.php?tinymce-annotate=true',
-                'account'    => false,
-                'contact'    => false,
-                'support'    => false,
-            ),
-        ) );
-    }
-
-    return $ta_fs;
-}
-
-// Init Freemius.
-ta_fs();
 
 
 add_filter('the_content', 'tma_annotate_backend');
